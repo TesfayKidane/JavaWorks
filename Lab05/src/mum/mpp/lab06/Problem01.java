@@ -10,5 +10,8 @@ package mum.mpp.lab06;
  * @author Tesfay
  */
 public class Problem01 {
+
+    public Problem01() {
+    }
     
 }
