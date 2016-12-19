@@ -1,0 +1,18 @@
+1) a) The program will generate sequence of 1 but it will print a single 1, because the 
+distinct() terminator operation is used. 
+
+Fix :
+    public static void main(String[] args)
+    {
+        IntStream ones = IntStream.of(1);
+        ones.forEach(System.out::println);
+    }
+
+b)
+ Stream<String> stringStream =  Stream.of("Bill", "Thomas", "Mary");
+ stringStream.forEach(System.out::println);        
+
+c)
+Stream<Integer> myIntSream = Stream.of(1,2,3,4,5,6,7);
+System.out.println(myIntSream.min(Integer::compare).get());
+System.out.println(myIntSream.max(Integer::compare).get());

@@ -1,0 +1,49 @@
+A) 
+- If two Employee has same name the compare method return 0, but this doesn't  mean the two employee objects are same ( they might have different salary).
+- Example
+    Employee joe = new Employee("Joe", 100000);
+    Employee joe2 = new Employee("joe", 200000);
+- Make the name compare case insensitive 
+/* A functor, but not a closure */
+public class EmployeeNameComparator implements Comparator<Employee> {
+	@Override
+	public int compare(Employee e1, Employee e2) {
+		return e1.name.toLowerCase().compareTo(e2.name.toLowerCase());
+	}
+}
+
+B)
+
+public void sort(List<Employee> emps, final SortMethod method) {
+		class EmployeeComparator implements Comparator<Employee> {
+			@Override
+			public int compare(Employee e1, Employee e2) {
+				if(method == SortMethod.BYNAME) {
+					return e1.name.toLowerCase().compareTo(e2.name.toLowerCase());
+				} else {
+					if(e1.salary == e2.salary) return 0;
+					else if(e1.salary < e2.salary) return -1;
+					else return 1;
+				}
+			}
+		}
+		Collections.sort(emps, new EmployeeComparator());
+	}
+
+C)
+
+	public void sort(List<Employee> emps,  SortMethod method) {
+		
+		Collections.sort(emps, (e1,e2) ->
+		{
+			if(method == SortMethod.BYNAME) {
+				return e1.name.toLowerCase().compareTo(e2.name.toLowerCase());
+			} else {
+				if(e1.salary == e2.salary) return 0;
+				else if(e1.salary < e2.salary) return -1;
+				else return 1;
+			}
+		});
+		
+				
+	}

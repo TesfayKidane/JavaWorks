@@ -1,0 +1,74 @@
+A) 
+An Imperative language specfies a series of instructions that the computer executes in sequence (do this, then do that) e.g Java.
+
+A functional language declares a set of mathematical/logical functions which define how input is translated to output. eg. f(y) = y * y. it is a type of declarative language.
+
+B)
+Declarative - The focus is on what the computer should do rather than how it should do it (ex. SQL).
+A declarative language declares a set of rules about what outputs should result from which inputs (eg. if you have A, then the result is B).
+An engine will apply these rules to inputs, and give an output.
+
+C) 
+Functional Interface
+Is an interface which has only one abstract method, but can have static and default methods. Lambda expressions can use this abstract 
+method of the functional interface as a target type and override. 
+e.g 
+public interface Foo{
+  public void doSomething();
+}
+
+Functor
+A functor is a typed data structure that encapsulates some value(s). 
+From syntactic perspective a functor is a container with the following API:
+
+import java.util.function.Function;
+ 
+interface Functor<T> {
+     
+    <R> Functor<R> map(Function<T, R> f);
+     
+}
+The only operation that functor provides is map() that takes a function f. 
+This function receives whatever is inside a box, transforms it and wraps the 
+result as-is into a second functor. Functor<T> is always an immutable container,
+thus map never mutates original object it was executed on. Instead it returns
+the result (or results ) wrapped in a brand new functor, possibly of different type R.
+Additionally functors should not perform any actions when identity function is applied, 
+that is map(x -> x). Such a pattern should always return either the same functor or an equal instance.
+
+Closur
+A closure is a functor embedded inside another class, that is capable of remembering the state of its
+enclosing object. In Java 7, instances of member, local, and anonymous inner classes are
+(essentially) closures, since they have full access to their enclosing object’s state.
+Implementing an EmployeeComparator using a local inner class allows us to use just one
+Comparator, embedded in the sort method itself:
+
+public class EmployeeInfo {
+    static enum SortMethod {BYNAME, BYSALARY};
+    public void sort(List<Employee> emps, final SortMethod method) {
+        class EmployeeComparator implements Comparator<Employee> {
+            @Override //Comparator is now aware of sort method
+            public int compare(Employee e1, Employee e2) {
+            if(method == SortMethod.BYNAME) {
+                 return e1.name.compareTo(e2.name);
+            } 
+            else {
+            if(e1.salary == e2.salary) return 0;
+            else if(e1.salary < e2.salary) return -1;
+                else return 1;
+            }
+        }
+    }
+    Collections.sort(emps, new EmployeeComparator());
+}
+
+D)
+Benefits of Functional Programming are:
+1. Programs are declarative (“what”) rather than imperative (“how”). Makes code more selfdocumenting – the sequence of function calls mirrors precisely the requirements
+2. Functions have referential transparency – two calls  to the same method are guaranteed to return the same result (as compared with referential opaqueness for Java getter methods)
+3. Functions do not cause a change of state; in an OO language, this means that functions do not change the state of their enclosing object (by modifying instance variables). In general, functions do not have side effects; they compute what they are asked to compute and return a value, without modifying their environment (modifying the environment is a side effect).
+E)
+1. Parameters: no any	Free variables: s, t
+2. Parameters: s, t 	Free variables: ignoreCase
+F)
+The functional interface used by equals method is ‘public interface Predicate<T>’.

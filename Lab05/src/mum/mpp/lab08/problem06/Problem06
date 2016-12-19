@@ -1,0 +1,35 @@
+6.1)
+A. (Employee e) -> e.getName() 
+
+Function< Employee, String> toUpper1 = (Employee x) -> x.getName();
+Function< Employee, String> toUpper2 = Employee::getName;
+
+B.  (Employee e,String s) -> e.setName(s) 
+
+Function< Employee, String> toUpper1 = (Employee x) -> x.setName();
+Function< Employee, String> toUpper2 = Employee::setName;
+
+C. (String s1,String s2) -> s1.compareTo(s2) 
+
+Function< String, String, Integer> toUpper1 = (String x, String y) -> x.compareTo(y)
+Function< String, String, Integer > toUpper2 = String::compareTo;
+
+D. (Integer x,Integer y) -> Math.pow(x,y)
+
+Function< Integer, Integer, Integer > toUpper1 = (Integer x, Integer y) -> Math.pow(x,y)
+Function< Integer, Integer, Integer > toUpper2 = Math::pow;
+
+E.  (Apple a) -> a.getWeight() 
+
+Function< Apple, Double> toUpper1 = (Apple a) -> a. getWeight ();
+Function< Apple, Double > toUpper2 = Apple:: getWeight;
+
+F. (String x) -> Integer.parseInt(x); 
+
+Function< String, Integer > toUpper1 = (String x) -> Integer.parseInt(x); 
+Function< String, Integer > toUpper2 = Integer:: parseInt;
+
+G. EmployeeNameComparator comp = new EmployeeNameComparator(); 
+(Employee e1, Employee e2) -> comp.compare(e1,e2) 
+Function< Employee, Employee, Integer > toUpper1 = (Employee e1, Employee e2) -> comp.compare(e1,e2) 
+Function< Employee, Employee, Integer > toUpper2 = EmployeeNameComparator::compare;
