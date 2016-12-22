@@ -1,0 +1,14 @@
+//Write you answer to part A below.
+
+compareTo is overriden in the Employee class and it's first comparing two employee objects by their name
+if they have same name then it compares them with thier salary.
+
+where as the equals method is overriden to return true only when two Employee objects have same name, same
+salary and same hire date. 
+
+
+
+
+
+
+//Write you answer to part B below.
