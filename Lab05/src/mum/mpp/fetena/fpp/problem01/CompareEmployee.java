@@ -13,8 +13,9 @@ import java.util.Comparator;
  */
 public class CompareEmployee implements Comparator<Employee>{
 
-            @Override
-            public int compare(Employee o1, Employee o2) {
-               return o1.getSsn().compareTo(o2.getSsn());
-            }
-        }
+    @Override
+    public int compare(Employee o1, Employee o2) {
+        int result = o1.getSsn().compareTo(o2.getSsn());
+        return result; 
+    }
+}

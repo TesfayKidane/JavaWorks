@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class DupValue<K, V> {
 
-	public static <K, V> boolean hasDuplicateValue(Map<K, V> map) {
+	public static <K, V> boolean hasDuplicateValue(Map<? extends K, ? extends V> map) {
            if(map == null  || map.size() < 2) return false;
            
            for(int i = 0 ; i < map.size() - 1 ; i++){

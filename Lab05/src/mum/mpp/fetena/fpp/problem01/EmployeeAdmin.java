@@ -1,7 +1,6 @@
 package mum.mpp.fetena.fpp.problem01;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -17,34 +16,41 @@ public class EmployeeAdmin {
 	*/
 	public static List<Employee> prepareReport(HashMap<String, Employee> table, List<String> socSecNums) {
             List<Employee> list = new ArrayList<>();
-            for(Map.Entry<String, Employee> m : table.entrySet())
+
+            for(Map.Entry<String, Employee> row : table.entrySet())
             {
-                Employee e = m.getValue();
-                if(socSecNums.contains(m.getKey()) && e.getSalary() > 80000)
+                String keySSN = row.getKey(); 
+                Employee e = row.getValue();
+                
+                if(socSecNums.contains(keySSN) && e.getSalary() > 80000)
                 {
                     list.add(e);
                 }
             }
-            Collections.sort(list, new CompareEmployee());
+            
+            CompareEmployee ce = new CompareEmployee();
+            
+            Collections.sort(list, ce);
+            
             return list ;
 	}
 	
         
         // This is second way solving the problem
         public static List<Employee> prepareReport2(HashMap<String, Employee> table, List<String> socSecNums) {
-            List<Employee> details = new ArrayList<>();
-            for(String s: socSecNums){
+            List<Employee> result = new ArrayList<>();
+            
+            for(String s : socSecNums){
                     Employee emp = table.get(s); 
                     if(emp!=null){
                             if(emp.getSalary()>80000){
-                            details.add(emp);
+                            result.add(emp);
                             }
 
                     }
 
             }
-            Collections.sort(details, new CompareEmployee());
-            return details;
+            Collections.sort(result, new CompareEmployee());
+            return result;
         }
-        
 }
